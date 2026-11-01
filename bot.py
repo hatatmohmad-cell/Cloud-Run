@@ -1,4 +1,4 @@
-```python
+
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
@@ -1136,4 +1136,3 @@ def handle_all_messages(message):
 if __name__ == "__main__":
     print("🤖 البوت يعمل الآن بنجاح! جاهز لاستقبال روابط المختبر وروابط Cloud Run...")
     bot.infinity_polling(timeout=60, long_polling_timeout=30)
-```
