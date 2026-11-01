@@ -1,4 +1,3 @@
-```bash
 #!/data/data/com.termux/files/usr/bin/bash
 set -e
 
@@ -24,4 +23,3 @@ export CHROMIUM_PATH=$(which chromium-browser 2>/dev/null || which chromium)
 
 echo "✅ اكتمل التثبيت بنجاح! لتشغيل البوت الآن نفذ الأمر:"
 echo "python3 bot.py"
-```
