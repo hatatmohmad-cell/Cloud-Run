@@ -1,33 +1,27 @@
-name: Run GCP V2Ray Telegram Bot
+```bash
+#!/data/data/com.termux/files/usr/bin/bash
+set -e
 
-on:
-  workflow_dispatch:
-  push:
-    branches: [ main, master ]
-  schedule:
-    - cron: '0 */5 * * *'
+echo "===================================================="
+echo "🚀 جاري تثبيت متطلبات البوت على Termux بدون أخطاء..."
+echo "===================================================="
 
-jobs:
-  run-bot:
-    runs-on: ubuntu-latest
-    timeout-minutes: 350
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+# 1. تحديث الحزم وتفعيل مستودع X11 لتحميل Chromium الأصلي
+pkg update -y && pkg upgrade -y
+pkg install -y x11-repo tur-repo
+pkg install -y python nodejs chromium python-greenlet procps termux-api git
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
+# 2. تثبيت مكتبات البوت وحل مشكلة توافق Playwright مع أندرويد
+pip install --upgrade pip setuptools wheel
+pip install pyTelegramBotAPI pyee typing-extensions termux-playwright
 
-      - name: Install dependencies and Playwright Chromium
-        run: |
-          pip install --upgrade pip
-          pip install -r requirements.txt
-          playwright install --with-deps chromium
+# 3. حقن عجلة Playwright وتفعيل باتش أندرويد تلقائياً
+termux-playwright-install || true
 
-      - name: Run Telegram Bot
-        env:
-          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
-        run: |
-          python3 bot.py
+# 4. ضبط متغيرات البيئة لمتصفح Chromium على Termux
+export PLAYWRIGHT_BROWSERS_PATH=0
+export CHROMIUM_PATH=$(which chromium-browser 2>/dev/null || which chromium)
+
+echo "✅ اكتمل التثبيت بنجاح! لتشغيل البوت الآن نفذ الأمر:"
+echo "python3 bot.py"
+```
