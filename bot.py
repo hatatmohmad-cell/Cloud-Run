@@ -1,16 +1,4 @@
 
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-بوت تيليجرام الذكي لنشر حاوية V2Ray/VLESS على Google Cloud Run (Qwiklabs / Google Skills)
-يدعم:
-1. التبديل الفوري لروابط .run.app داخل كونفيغ VLESS الخاص بك.
-2. الدخول التلقائي لروابط المختبر (Google Skills / Qwiklabs) وتخطي شاشة الترحيب (أفهم ذلك / الشروط).
-3. النشر عبر Cloud Shell (أوامر gcloud السريعة) أو عبر واجهة المتصفح (Cloud Run GUI) مع التبديل التلقائي.
-4. الفحص الذكي للمناطق (Regions) المسموحة في المختبر وتجاوز قيود المنظمة تلقائياً.
-5. التوافق الكامل مع المستودعات السحابية (GitHub Actions / Codespaces / Docker / VPS) ومع Termux على الهاتف.
-"""
-
 import os
 import re
 import json
